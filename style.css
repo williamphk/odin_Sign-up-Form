@@ -108,8 +108,8 @@ span[class="notmatch"]::before {
   color: white;
   background-color: rgb(96, 96, 96);
   padding: 5px 10px;
-  top: -38px;
-  left: -70px;
+  top: -55px;
+  left: 200px;
   z-index: 1;
 }
 
@@ -138,41 +138,42 @@ input[type="password"]:not(:placeholder-shown) {
   background-position: 220px 5px;
 }
 
-input ~ span:only-of-type {
+input ~ span {
   position: relative;
 }
 
-input[type="email"]:not(:placeholder-shown) ~ .emailerror::after {
+input[type="email"]:focus:not(:placeholder-shown) ~ .emailerror::after {
   font-size: 0.85rem;
   position: absolute;
   content: "Invalid Email";
   color: rgb(255, 0, 0);
   padding: 5px 10px;
   top: 8px;
-  width: 600px;
-  z-index: 1;
+  width: 242px;
+  z-index: 2;
 }
 
-input[type="tel"]:not(:placeholder-shown) ~ .telerror::after {
+input[type="tel"]:focus:not(:placeholder-shown) ~ .telerror::after {
   font-size: 0.85rem;
   position: absolute;
   content: "Invalid Nubmer";
   color: rgb(255, 0, 0);
   padding: 5px 10px;
   top: 8px;
-  width: 600px;
-  z-index: 1;
+  width: 242px;
+  z-index: 2;
 }
 
-input[type="password"]:not(:placeholder-shown) ~ .passerror::after {
+input[type="password"]:focus:not(:placeholder-shown) ~ .passerror::after {
   font-size: 0.85rem;
   position: absolute;
   content: "Your password must be at least 6 characters as well as contain at least one uppercase, one lowercase, and one number.";
   color: rgb(255, 0, 0);
   padding: 5px 10px;
   top: 8px;
-  width: 600px;
-  z-index: 1;
+  width: 242px;
+  z-index: 2;
+  display: inline-block;
 }
 
 input[type="text"]:valid,
@@ -216,6 +217,7 @@ button:hover {
 .rightSidebar > p {
   margin-top: 3vh;
   margin-left: 3.5vh;
+  margin-bottom: 5vh;
 }
 
 @media only screen and (max-width: 1100px) {
@@ -227,9 +229,16 @@ button:hover {
     display: flex;
     flex-direction: column;
   }
+  .introduction {
+    padding-top: 5vh;
+    padding-left: 5vw;
+  }
+  #createAcc {
+    padding-left: 5vw;
+  }
   .leftSidebar {
     min-height: 10px;
-    height: 200px;
+    height: 15vh;
     width: 100%;
     display: flex;
     align-items: center;
@@ -237,11 +246,38 @@ button:hover {
   .leftTitle {
     margin-top: 0vh;
   }
+  button {
+    margin-left: 5vw;
+  }
+  .rightSidebar > p {
+    margin-left: 5vw;
+  }
 }
 
 @media only screen and (max-width: 650px) {
   #createAcc {
     height: auto;
+  }
+  .introduction {
+    padding-top: 2vh;
+  }
+  span::before {
+    left: 55vw;
+  }
+  span[class="notmatch"]::before {
+    left: 55vw;
+  }
+  input {
+    width: 70vw;
+  }
+  input[type="email"]:focus:not(:placeholder-shown) ~ .emailerror::after,
+  input[type="tel"]:focus:not(:placeholder-shown) ~ .telerror::after,
+  input[type="password"]:focus:not(:placeholder-shown) ~ .passerror::after {
+    width: 69vw;
+  }
+  button {
+    height: max(10vw, 50px);
+    width: max(50vw, 140px);
   }
   .input {
     grid-template-columns: 200px;

@@ -9,33 +9,69 @@
   </head>
   <body>
     <div class="leftSidebar">
-      <img src="image-sidebar.png" alt="odin" width="50" height="50" />
-      <p>ODIN</p>
+      <div class="leftTitle">
+        <img src="image-sidebar.png" alt="odin" width="50" height="50" />
+        <p>ODIN</p>
+      </div>
     </div>
     <div class="rightSidebar">
       <div class="introduction">
         <p>
           This is not a real online service! you know you need something like this in your life to
-          help to help you realize your deepest dreams. Sign up now to get started
+          help to help you realize your deepest dreams. <br />
+          Sign up now to get started.
         </p>
-        <p>You <span>know</span> you want to</p>
+        <p>You <span>know</span> you want to.</p>
       </div>
       <form id="createAcc">
         <legend>Let's do this!</legend>
-        <label for="firstname">FIRST NAME</label>
-        <input type="text" id="firstname" name="firstname" />
-        <label for="lastname">LAST NAME</label>
-        <input type="text" id="lastname" name="lastname" />
-        <label for="email">EMAIL</label>
-        <input type="email" id="email" name="email" />
-        <label for="phone">PHONE NUMBER</label>
-        <input type="tel" id="phone" name="phone" />
-        <label for="firstname">PASSWORD</label>
-        <input type="password" id="firstname" name="firstname" />
-        <label for="firstname">CONFIRM PASSWORD</label>
-        <input type="password" id="firstname" name="firstname" />
+        <div class="input">
+          <label for="firstname">FIRST NAME</label>
+          <label for="lastname">LAST NAME</label>
+          <input required type="text" id="firstname" name="firstname" placeholder=" " />
+          <input required type="text" id="lastname" name="lastname" placeholder=" " />
+          <span class="firstnameerror"></span>
+          <span class="lastnameerror"></span>
+          <label for="email">EMAIL</label>
+          <label for="phone">PHONE NUMBER</label>
+          <input
+            required
+            type="email"
+            autocomplete="email"
+            id="email"
+            name="email"
+            placeholder=" "
+          />
+          <input required type="tel" pattern="[0-9]{8}" id="phone" name="phone" placeholder=" " />
+          <span class="emailerror"></span>
+          <span class="telerror"></span>
+          <label for="password">PASSWORD</label>
+          <label for="confirm">CONFIRM PASSWORD</label>
+          <input
+            required
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+            type="password"
+            id="password"
+            name="password"
+            placeholder=" "
+            onChange="onChange()"
+          />
+          <input
+            required
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+            type="password"
+            id="confirm"
+            name="confirm"
+            placeholder=" "
+            onChange="onChange()"
+          />
+          <span class="passerror"></span>
+          <span class="notmatch" style="color: red; left: 270px; bottom: 17px"></span>
+        </div>
       </form>
       <button type="submit" form="createAcc" value="Create">Create Account</button>
+      <p>Already have an account? Log in</p>
     </div>
+    <script src="script.js"></script>
   </body>
 </html>

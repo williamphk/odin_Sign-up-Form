@@ -1,31 +1,291 @@
-body {
+* {
   margin: 0px;
   padding: 0px;
+}
+
+@font-face {
+  font-family: NorseBold;
+  src: url(Norse-Bold.otf);
+}
+
+body {
   display: flex;
   flex-direction: row;
   justify-content: center;
   box-sizing: border-box;
+  font-family: NorseBold;
+  height: 100%;
 }
 
 .leftSidebar {
-  height: 100vh;
-  width: max(28vw, 0px);
-  background-image: url("background.jpg");
+  min-height: 100vh;
+  background: url("background.jpg") no-repeat center;
+  background-size: cover;
+  width: 35vw;
+}
+
+.leftTitle {
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(0, 0, 0, 0.492);
+  width: 100%;
+  height: 150px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 22vh;
+}
+
+.leftTitle > img {
+  height: clamp(3rem, 8vw, 7rem);
+  width: clamp(3rem, 8vw, 7rem);
+}
+
+.leftTitle > p {
+  color: white;
+  font-size: clamp(3rem, 8vw, 7rem);
+  margin: 0px;
+  padding: 0px;
 }
 
 .rightSidebar {
-  height: 100vh;
-  width: 42vw;
-  padding-left: 2.5vw;
-  padding-right: 5vw;
-  background-color: yellow;
+  min-height: 100vh;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 5px 5px 5px rgb(0, 0, 0);
 }
 
 .introduction {
-  margin-top: 15vh;
-  font-size: clamp(1.15rem, 4vw, 1.6rem);
+  padding-top: 15vh;
+  padding-left: 2vw;
+  padding-right: 35vw;
+  padding-bottom: 2vh;
+  font-size: clamp(1.15rem, 3vw, 1.6rem);
+  background-color: rgb(250, 250, 250);
+}
+
+.introduction > p {
+  padding-bottom: 2vh;
+  font-weight: 600;
+  line-height: 30px;
+}
+
+#createAcc {
+  padding-top: 1.5vh;
+  padding-left: 2vw;
+  padding-right: 15vw;
+  box-shadow: 0px 5px 5px rgb(187, 187, 187);
+  height: 20rem;
+}
+
+.input {
+  display: grid;
+  grid-template-columns: 200px 200px;
+  grid-template-rows: repeat(8, 26px);
+  column-gap: 120px;
 }
 
 legend {
-  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-size: clamp(1.15rem, 4vw, 1.6rem);
+  padding-bottom: 2vh;
+}
+
+span::before {
+  font-size: 0.7rem;
+  position: absolute;
+  content: "required";
+  color: white;
+  background-color: rgb(96, 96, 96);
+  padding: 5px 10px;
+  top: -55px;
+  left: 200px;
+  z-index: 1;
+}
+
+span[class="notmatch"]::before {
+  font-size: 0.7rem;
+  position: absolute;
+  content: "required";
+  color: white;
+  background-color: rgb(96, 96, 96);
+  padding: 5px 10px;
+  top: -38px;
+  left: -70px;
+  z-index: 1;
+}
+
+input {
+  width: 15.5rem;
+  height: 2rem;
+  border-radius: 5px;
+  border: 1px #e5e7eb solid;
+  padding-left: 10px;
+  position: relative;
+}
+
+input:focus {
+  outline: none;
+  border: 2px #6b9cff solid;
+  box-shadow: 2px 2px 2px rgb(216, 216, 216);
+}
+
+input[type="text"]:not(:placeholder-shown),
+input[type="email"]:not(:placeholder-shown),
+input[type="tel"]:not(:placeholder-shown),
+input[type="password"]:not(:placeholder-shown) {
+  background: url(invalid.svg);
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: 220px 5px;
+}
+
+input ~ span {
+  position: relative;
+}
+
+input[type="email"]:not(:placeholder-shown) ~ .emailerror::after {
+  font-size: 0.85rem;
+  position: absolute;
+  content: "Invalid Email";
+  color: rgb(255, 0, 0);
+  padding: 5px 10px;
+  top: 8px;
+  width: 600px;
+  z-index: 1;
+}
+
+input[type="tel"]:not(:placeholder-shown) ~ .telerror::after {
+  font-size: 0.85rem;
+  position: absolute;
+  content: "Invalid Nubmer";
+  color: rgb(255, 0, 0);
+  padding: 5px 10px;
+  top: 8px;
+  width: 600px;
+  z-index: 1;
+}
+
+input[type="password"]:not(:placeholder-shown) ~ .passerror::after {
+  font-size: 0.85rem;
+  position: absolute;
+  content: "Your password must be at least 6 characters as well as contain at least one uppercase, one lowercase, and one number.";
+  color: rgb(255, 0, 0);
+  padding: 5px 10px;
+  top: 8px;
+  width: 600px;
+  z-index: 1;
+}
+
+input[type="text"]:valid,
+input[type="email"]:valid,
+input[type="tel"]:valid,
+input[type="password"]:valid {
+  background: url(checkmark.svg);
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: 220px 5px;
+}
+
+input[type="email"]:valid ~ .emailerror::after,
+input[type="tel"]:valid ~ .telerror::after,
+input[type="password"]:valid ~ .passerror::after {
+  content: " ";
+}
+
+.nomatch {
+  color: rgb(255, 0, 0);
+  font-size: 100px;
+}
+
+button {
+  margin-top: 5vh;
+  margin-left: 3vh;
+  height: 50px;
+  width: 200px;
+  font-size: 17px;
+  border-radius: 12px;
+  color: white;
+  background-color: #596d48;
+  box-shadow: 5px 5px 5px rgb(216, 216, 216);
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.rightSidebar > p {
+  margin-top: 3vh;
+  margin-left: 3.5vh;
+}
+
+@media only screen and (max-width: 1100px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .leftSidebar {
+    min-height: 10px;
+    height: 200px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .leftTitle {
+    margin-top: 0vh;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  #createAcc {
+    height: auto;
+  }
+  .input {
+    grid-template-columns: 200px;
+    grid-template-rows: repeat(16, 27px);
+    grid-template-areas:
+      "1"
+      "2"
+      "3"
+      "4"
+      "5"
+      "6"
+      "7"
+      "8"
+      "9"
+      "10"
+      "11"
+      "12"
+      "13"
+      "14"
+      "15"
+      "16";
+  }
+  #firstname {
+    grid-area: 2;
+  }
+  .firstnameerror {
+    grid-area: 3;
+  }
+  #lastname {
+    grid-area: 5;
+  }
+  #email {
+    grid-area: 8;
+  }
+  .emailerror {
+    grid-area: 9;
+  }
+  #phone {
+    grid-area: 11;
+  }
+  #password {
+    grid-area: 14;
+  }
+  .passerror {
+    grid-area: 15;
+  }
+  #confirm {
+    grid-area: 17;
+  }
 }

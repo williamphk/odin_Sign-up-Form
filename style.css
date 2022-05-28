@@ -138,7 +138,7 @@ input[type="password"]:not(:placeholder-shown) {
   background-position: 220px 5px;
 }
 
-input ~ span {
+input ~ span:only-of-type {
   position: relative;
 }
 
@@ -220,10 +220,10 @@ button:hover {
 
 @media only screen and (max-width: 1100px) {
   html {
-    width: 120%;
+    width: 100%;
   }
   body {
-    width: 120%;
+    width: 100%;
     display: flex;
     flex-direction: column;
   }

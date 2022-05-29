@@ -50,7 +50,7 @@ body {
 .rightSidebar {
   min-height: 100vh;
   width: 100%;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(231, 231, 231);
   box-shadow: 5px 5px 5px rgb(0, 0, 0);
 }
 
@@ -60,7 +60,7 @@ body {
   padding-right: 35vw;
   padding-bottom: 2vh;
   font-size: clamp(1.15rem, 3vw, 1.6rem);
-  background-color: rgb(250, 250, 250);
+  background-color: rgb(231, 231, 231);
 }
 
 .introduction > p {
@@ -75,12 +75,13 @@ body {
   padding-right: 15vw;
   box-shadow: 0px 5px 5px rgb(187, 187, 187);
   height: 20rem;
+  background-color: rgb(255, 255, 255);
 }
 
 .input {
   display: grid;
   grid-template-columns: 200px 200px;
-  grid-template-rows: repeat(8, 26px);
+  grid-template-rows: repeat(9, 26px);
   column-gap: 120px;
 }
 
@@ -124,7 +125,7 @@ input {
 
 input:focus {
   outline: none;
-  border: 2px #6b9cff solid;
+  border: 1.8px #6b9cff solid;
   box-shadow: 2px 2px 2px rgb(216, 216, 216);
 }
 
@@ -164,7 +165,19 @@ input[type="tel"]:focus:not(:placeholder-shown) ~ .telerror::after {
   z-index: 2;
 }
 
-input[type="password"]:focus:not(:placeholder-shown) ~ .passerror::after {
+input[id="password"]:focus:not(:placeholder-shown) ~ .passerror::after {
+  font-size: 0.85rem;
+  position: absolute;
+  content: "Your password must be at least 6 characters as well as contain at least one uppercase, one lowercase, and one number.";
+  color: rgb(255, 0, 0);
+  padding: 5px 10px;
+  top: 8px;
+  width: 242px;
+  z-index: 2;
+  display: inline-block;
+}
+
+input[id="confirm"]:focus:not(:placeholder-shown) ~ .passerror2::after {
   font-size: 0.85rem;
   position: absolute;
   content: "Your password must be at least 6 characters as well as contain at least one uppercase, one lowercase, and one number.";
@@ -188,7 +201,8 @@ input[type="password"]:valid {
 
 input[type="email"]:valid ~ .emailerror::after,
 input[type="tel"]:valid ~ .telerror::after,
-input[type="password"]:valid ~ .passerror::after {
+input[type="password"]:valid ~ .passerror::after,
+input[type="password"]:valid ~ .passerror2::after {
   content: " ";
 }
 
@@ -232,6 +246,7 @@ button:hover {
   .introduction {
     padding-top: 5vh;
     padding-left: 5vw;
+    padding-right: 25vw;
   }
   #createAcc {
     padding-left: 5vw;
@@ -257,9 +272,11 @@ button:hover {
 @media only screen and (max-width: 650px) {
   #createAcc {
     height: auto;
+    padding-bottom: 3vh;
   }
   .introduction {
     padding-top: 2vh;
+    padding-right: 18vw;
   }
   span::before {
     left: 55vw;
@@ -268,11 +285,12 @@ button:hover {
     left: 55vw;
   }
   input {
-    width: 70vw;
+    width: calc(55vw + 45px);
   }
   input[type="email"]:focus:not(:placeholder-shown) ~ .emailerror::after,
   input[type="tel"]:focus:not(:placeholder-shown) ~ .telerror::after,
-  input[type="password"]:focus:not(:placeholder-shown) ~ .passerror::after {
+  input[id="password"]:focus:not(:placeholder-shown) ~ .passerror::after,
+  input[id="confirm"]:focus:not(:placeholder-shown) ~ .passerror2::after {
     width: 69vw;
   }
   button {
@@ -281,7 +299,7 @@ button:hover {
   }
   .input {
     grid-template-columns: 200px;
-    grid-template-rows: repeat(16, 27px);
+    grid-template-rows: repeat(18, minmax(20px, auto));
     grid-template-areas:
       "1"
       "2"
@@ -298,7 +316,9 @@ button:hover {
       "13"
       "14"
       "15"
-      "16";
+      "16"
+      "17"
+      "18";
   }
   #firstname {
     grid-area: 2;
@@ -326,5 +346,30 @@ button:hover {
   }
   #confirm {
     grid-area: 17;
+  }
+  input:invalid:focus:not(:placeholder-shown) ~ .emailerror::after,
+  input:invalid:focus:not(:placeholder-shown) ~ .telerror::after,
+  input:invalid:focus:not(:placeholder-shown) ~ .passerror::after,
+  input:invalid:focus:not(:placeholder-shown) ~ .passerror2::after {
+    position: static;
+  }
+  input:invalid:not(:focus):not(:placeholder-shown),
+  input:invalid:not(:focus):not(:placeholder-shown),
+  input:invalid:not(:focus):not(:placeholder-shown),
+  input:invalid:not(:focus):not(:placeholder-shown) {
+    background-color: rgb(255, 219, 225);
+  }
+  input[type="text"]:valid,
+  input[type="email"]:valid,
+  input[type="tel"]:valid,
+  input[type="password"]:valid,
+  input[type="text"]:not(:placeholder-shown),
+  input[type="email"]:not(:placeholder-shown),
+  input[type="tel"]:not(:placeholder-shown),
+  input[type="password"]:not(:placeholder-shown) {
+    background-position: calc(55vw + 25px);
+  }
+  span::before {
+    top: -60px;
   }
 }

@@ -6,6 +6,6 @@ function onChange() {
     document.getElementsByClassName("notmatch")[0].innerHTML = " ";
   } else {
     confirm.setCustomValidity("Passwords do not match");
-    document.getElementsByClassName("notmatch")[0].innerHTML = "Not Match";
+    document.getElementsByClassName("notmatch")[0].innerHTML = "Password Not Match";
   }
 }
